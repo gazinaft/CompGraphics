@@ -1,10 +1,34 @@
 ﻿using GeometricObjects.Basic;
+using System;
 
 namespace GeometricObjects.Figures
 {
-    public struct Sphere
+    public struct Sphere : ITraceable
     {
         public Point center;
         public double radius;
+
+        public bool Intersects(Ray ray, out double t)
+        {
+            //(o + dt - c)^2 = r^2
+            //(dt + k)^2 = r^2
+            //t^2 + 2dk*t + (k^2 - r^2) = 0
+            //b/2 = dk; a = 1, c = k^2 - r^2
+            //D = 4 * ((b/2)^2 - k^2 + r^2)
+            //t1 = -b/2 - sD/2; t2 = -b/2 + sD/2;
+            //t1 < t2
+            t = 0;
+            var k = ray.origin - center;
+            var b2 = ray.direction.Dot(k);
+            var ka = k.Abs;
+            var D = (b2 * b2 + radius * radius - ka * ka) * 4;
+            if (D < 0) return false;
+            var sD = Math.Sqrt(D);
+            var t1 = -b2 - sD;
+            var t2 = -b2 + sD;
+            if (t1 < 0 && t2 < 0) return false;
+            t = t1 < 0 ? t2 : t1;
+            return true;
+        }
     }
 }
