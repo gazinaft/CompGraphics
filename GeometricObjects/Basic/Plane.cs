@@ -3,7 +3,7 @@
     public class Plane : ITraceable
     {
         public Vector Normal { get; set; }
-        public Point Point { get; set; }
+        public Vertex Point { get; set; }
 
         public bool Intersects(Ray ray, out double t)
         {
