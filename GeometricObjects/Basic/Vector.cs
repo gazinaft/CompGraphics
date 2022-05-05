@@ -2,45 +2,45 @@
 
 namespace GeometricObjects.Basic
 {
-    public struct Vector
+    public class Vector
     {
-        public double x;
-        public double y;
-        public double z;
+        public double X { get; set; }
+        public double Y { get; set; }
+        public double Z { get; set; }
 
         public Vector(double x, double y, double z)
         {
-            this.x = x;
-            this.y = y;
-            this.z = z;
+            X = x;
+            Y = y;
+            Z = z;
         }
 
-        public double Abs => Math.Sqrt(x * x + y * y + z * z);
+        public double Abs => Math.Sqrt(X * X + Y * Y + Z * Z);
 
         public Vector Normalize()
         {
             var abs = Abs;
-            return new Vector(x / abs, y / abs, z / abs);
+            return new Vector(X / abs, Y / abs, Z / abs);
         }
 
         public static Vector operator +(Vector v1, Vector v2)
         {
-            return new Vector(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z);
+            return new Vector(v1.X + v2.X, v1.Y + v2.Y, v1.Z + v2.Z);
         }
 
         public static Vector operator -(Vector v1, Vector v2)
         {
-            return new Vector(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z);
+            return new Vector(v1.X - v2.X, v1.Y - v2.Y, v1.Z - v2.Z);
         }
 
         public static Vector operator *(Vector v1, Vector v2)
         {
-            return new Vector(v1.y * v2.z - v1.z * v2.y, v1.z * v2.x - v1.x * v2.z, v1.x * v2.y - v1.y * v2.x);
+            return new Vector(v1.Y * v2.Z - v1.Z * v2.Y, v1.Z * v2.X - v1.X * v2.Z, v1.X * v2.Y - v1.Y * v2.X);
         }
 
         public double Dot(Vector v)
         {
-            return x * v.x + y * v.y + z * v.z;
+            return X * v.X + Y * v.Y + Z * v.Z;
         }
     }
 }

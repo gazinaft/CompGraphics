@@ -1,10 +1,10 @@
 ﻿namespace GeometricObjects.Basic
 {
-    public struct Camera
+    public class Camera
     {
-        public Point pov;
-        public double distance;
-        public double height;
-        public double width;
+        public Point Pov { get; set; }
+        public double Distance { get; set; }
+        public double Height { get; set; }
+        public double Width { get; set; }
     }
 }

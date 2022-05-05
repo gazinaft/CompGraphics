@@ -1,8 +1,8 @@
 ﻿namespace GeometricObjects.Basic
 {
-    public struct Ray
+    public class Ray
     {
-        public Vector direction;
-        public Point origin;
+        public Vector Direction { get; set; }
+        public Point Origin { get; set; }
     }
 }
