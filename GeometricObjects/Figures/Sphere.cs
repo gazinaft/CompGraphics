@@ -5,7 +5,7 @@ namespace GeometricObjects.Figures
 {
     public class Sphere : ITraceable
     {
-        public Point Center { get; set; }
+        public Vertex Center { get; set; }
         public double Radius { get; set; }
 
         public bool Intersects(Ray ray, out double t)
