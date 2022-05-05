@@ -3,10 +3,10 @@ using System;
 
 namespace GeometricObjects.Figures
 {
-    public struct Sphere : ITraceable
+    public class Sphere : ITraceable
     {
-        public Point center;
-        public double radius;
+        public Point Center { get; set; }
+        public double Radius { get; set; }
 
         public bool Intersects(Ray ray, out double t)
         {
@@ -18,10 +18,10 @@ namespace GeometricObjects.Figures
             //t1 = -b/2 - sD/2; t2 = -b/2 + sD/2;
             //t1 < t2
             t = 0;
-            var k = ray.origin - center;
-            var b2 = ray.direction.Dot(k);
+            var k = ray.Origin - Center;
+            var b2 = ray.Direction.Dot(k);
             var ka = k.Abs;
-            var D = (b2 * b2 + radius * radius - ka * ka) * 4;
+            var D = (b2 * b2 + Radius * Radius - ka * ka) * 4;
             if (D < 0) return false;
             var sD = Math.Sqrt(D);
             var t1 = -b2 - sD;
