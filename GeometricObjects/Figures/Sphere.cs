@@ -8,7 +8,7 @@ namespace GeometricObjects.Figures
         public Vertex Center { get; set; }
         public double Radius { get; set; }
 
-        public bool Intersects(Ray ray, out double t)
+        public bool Intersects(Ray ray, out HitResult hr)
         {
             //(o + dt - c)^2 = r^2
             //(dt + k)^2 = r^2
@@ -17,7 +17,7 @@ namespace GeometricObjects.Figures
             //D = 4 * ((b/2)^2 - k^2 + r^2)
             //t1 = -b/2 - sD/2; t2 = -b/2 + sD/2;
             //t1 < t2
-            t = 0;
+            hr = new HitResult(0);
             var k = ray.Origin - Center;
             var b2 = ray.Direction.Dot(k);
             var ka = k.Abs;
@@ -27,7 +27,7 @@ namespace GeometricObjects.Figures
             var t1 = -b2 - sD;
             var t2 = -b2 + sD;
             if (t1 < 0 && t2 < 0) return false;
-            t = t1 < 0 ? t2 : t1;
+            hr.t = t1 < 0 ? t2 : t1;
             return true;
         }
     }

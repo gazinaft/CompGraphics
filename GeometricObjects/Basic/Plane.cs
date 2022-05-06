@@ -5,9 +5,9 @@
         public Vector Normal { get; set; }
         public Vertex Point { get; set; }
 
-        public bool Intersects(Ray ray, out double t)
+        public bool Intersects(Ray ray, out HitResult hr)
         {
-            t = 0;
+            hr = new HitResult(0);
             //normal.dot(ray.dir) = 0
             var scalar = Normal.Dot(ray.Direction);
             if (scalar == 0) return false;
@@ -24,9 +24,8 @@
              * t = (Ax2 + By2 + Cz2 - Ax1 - By1 - Cz1)/(Aa + Bb + Cc)
              *   = (A(x2 - x1) + B(y2 - y1) + C(z2 - z1))/scalar
              * **/
-            t = Normal.Dot(Point - ray.Origin) / scalar;
-            if (t < 0) return false;
-            return true;
+            hr.t = Normal.Dot(Point - ray.Origin) / scalar;
+            return hr.t >= 0;
         }
     }
 }
