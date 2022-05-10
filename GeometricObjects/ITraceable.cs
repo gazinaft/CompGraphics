@@ -4,6 +4,6 @@ namespace GeometricObjects
 {
     public interface ITraceable
     {
-        bool Intersects(Ray ray, out double t);
+        bool Intersects(Ray ray, out HitResult hr);
     }
 }
