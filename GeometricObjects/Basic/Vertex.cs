@@ -27,5 +27,10 @@
         {
             return new Vertex(p.X + v.X, p.Y + v.Y, p.Z + v.Z);
         }
+
+        public override string ToString()
+        {
+            return $"Vertex({X},{Y},{Z})";
+        }
     }
 }
