@@ -22,5 +22,10 @@
         {
             return new Vector(p1.X - p2.X, p1.Y - p2.Y, p1.Z - p2.Z);
         }
+
+        public static Vertex operator +(Vertex p, Vector v)
+        {
+            return new Vertex(p.X + v.X, p.Y + v.Y, p.Z + v.Z);
+        }
     }
 }

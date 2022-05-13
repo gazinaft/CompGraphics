@@ -1,6 +1,6 @@
 ﻿namespace GeometricObjects.Basic
 {
-    class DirectionalLight
+    public class DirectionalLight
     {
         private Vector direction;
 
