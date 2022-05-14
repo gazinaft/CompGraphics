@@ -17,19 +17,22 @@ namespace GeometricObjects.Basic
         public double Distance { get; set; }
         public int Height = 20;
         public int Width = 20;
-        public int ScaleX = 120;
-        public int ScaleY = 40;
+        public int ScaleX;
+        public int ScaleY;
 
         
         private Vertex TopLeft;
         private Vertex TopRight;
         private Vertex BottomLeft;
 
-        public Camera()
+        public Camera(int scaleX, int scaleY)
         {
-            TopLeft = new Vertex(1.0, Height/2.0, Width/2.0);
-            TopRight = new Vertex(1.0, Height/2.0, -Width/2.0);
-            BottomLeft = new Vertex(1.0, -Height/2.0, Width/2.0);
+            ScaleX = scaleX;
+            ScaleY = scaleY;
+            
+            TopLeft = new Vertex(0, Height/2.0, Width/2.0);
+            TopRight = new Vertex(0, Height/2.0, -Width/2.0);
+            BottomLeft = new Vertex(0, -Height/2.0, Width/2.0);
         }
         
         private Vector PlusX => (TopRight - TopLeft).Scale(1.0/ScaleX); // X increases to right
