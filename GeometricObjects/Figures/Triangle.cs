@@ -1,3 +1,4 @@
+using System;
 using GeometricObjects.Basic;
 
 namespace GeometricObjects.Figures
@@ -40,6 +41,11 @@ namespace GeometricObjects.Figures
             // At this stage we can compute t to find out where the intersection point is on the line.
             t = f * edge2.Dot(q); 
             return t > EPSILON;
+        }
+
+        public Vector NormalAt(Vertex p)
+        {
+            return ((V1 - V0) * (V2 - V0)).Normalize();
         }
     }
 }

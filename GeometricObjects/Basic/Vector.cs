@@ -51,5 +51,10 @@ namespace GeometricObjects.Basic
         {
             return new Vector(X * x, Y * y, Z * z);
         }
+        
+        public override string ToString()
+        {
+            return $"Vector({X},{Y},{Z})";
+        }
     }
 }

@@ -28,5 +28,10 @@
             if (t < 0) return false;
             return true;
         }
+
+        public Vector NormalAt(Vertex p)
+        {
+            return Normal.Normalize();
+        }
     }
 }

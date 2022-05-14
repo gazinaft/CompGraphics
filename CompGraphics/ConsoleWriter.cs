@@ -7,11 +7,11 @@ namespace CompGraphics
     {
         public void Write(Color[,] pixels)
         {
-            for (int i = 0; i < pixels.GetLength(0); i++)
+            for (int i = 0; i < pixels.GetLength(1); i++)
             {
-                for (int j = 0; j < pixels.GetLength(1); j++)
+                for (int j = 0; j < pixels.GetLength(0); j++)
                 {
-                    var pixel = pixels[i, j].GetBrightness();
+                    var pixel = pixels[j, i].GetBrightness();
                     var character = pixel switch
                     {
                         > 0.8f => "#",

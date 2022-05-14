@@ -30,5 +30,10 @@ namespace GeometricObjects.Figures
             t = t1 < 0 ? t2 : t1;
             return true;
         }
+
+        public Vector NormalAt(Vertex p)
+        {
+            return (p - Center).Normalize();
+        }
     }
 }

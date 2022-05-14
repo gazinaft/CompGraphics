@@ -17,15 +17,23 @@ namespace GeometricObjects.Basic
         public double Distance { get; set; }
         public int Height = 20;
         public int Width = 20;
-        public double CameraScale { get; set; }
+        public int ScaleX = 120;
+        public int ScaleY = 40;
 
         
-        private Vertex TopLeft = new Vertex(1.0, 10.0, 10.0);
-        private Vertex TopRight = new Vertex(1.0, 10.0, -10.0);
-        private Vertex BottomLeft = new Vertex(1.0, -10.0, 10.0);
+        private Vertex TopLeft;
+        private Vertex TopRight;
+        private Vertex BottomLeft;
 
-        private Vector PlusX => (TopRight - TopLeft).Scale(1.0/Width); // X increases to right
-        private Vector PlusY => (BottomLeft - TopLeft).Scale(1.0/Height); // Y increases downwards
+        public Camera()
+        {
+            TopLeft = new Vertex(1.0, Height/2.0, Width/2.0);
+            TopRight = new Vertex(1.0, Height/2.0, -Width/2.0);
+            BottomLeft = new Vertex(1.0, -Height/2.0, Width/2.0);
+        }
+        
+        private Vector PlusX => (TopRight - TopLeft).Scale(1.0/ScaleX); // X increases to right
+        private Vector PlusY => (BottomLeft - TopLeft).Scale(1.0/ScaleY); // Y increases downwards
 
         private Vertex PixelLocation(int x, int y)
         {
