@@ -1,9 +1,9 @@
 ﻿using GeometricObjects.Basic;
-using GeometricObjectsTest.Values;
+using GeometricObjectsTest.Sources;
 using NUnit.Framework;
 using System;
 
-namespace GeometricObjectsTest
+namespace GeometricObjectsTest.Tests
 {
     [TestFixture]
     class VectorTest
