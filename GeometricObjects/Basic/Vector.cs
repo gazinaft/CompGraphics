@@ -42,5 +42,19 @@ namespace GeometricObjects.Basic
         {
             return X * v.X + Y * v.Y + Z * v.Z;
         }
+
+        public Vector Scale(double ratio)
+        {
+            return new Vector(X * ratio, Y * ratio, Z * ratio);
+        }
+        public Vector Scale(double x, double y, double z)
+        {
+            return new Vector(X * x, Y * y, Z * z);
+        }
+        
+        public override string ToString()
+        {
+            return $"Vector({X},{Y},{Z})";
+        }
     }
 }

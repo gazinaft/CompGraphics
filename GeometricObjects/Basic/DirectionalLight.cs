@@ -1,13 +1,13 @@
 ﻿namespace GeometricObjects.Basic
 {
-    class DirectionalLight
+    public class DirectionalLight
     {
         private Vector direction;
 
         public Vector Direction
         {
             get => direction;
-            set => direction = value.Normalize();
+            set => direction = value.Normalize().Scale(-1);
         }
     }
 }

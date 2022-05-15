@@ -24,11 +24,16 @@ namespace GeometricObjects.Figures
             var D = (b2 * b2 + Radius * Radius - ka * ka) * 4;
             if (D < 0) return false;
             var sD = Math.Sqrt(D);
-            var t1 = -b2 - sD;
-            var t2 = -b2 + sD;
+            var t1 = -b2 - sD/2;
+            var t2 = -b2 + sD/2;
             if (t1 < 0 && t2 < 0) return false;
             t = t1 < 0 ? t2 : t1;
             return true;
+        }
+
+        public Vector NormalAt(Vertex p)
+        {
+            return (p - Center).Normalize();
         }
     }
 }
