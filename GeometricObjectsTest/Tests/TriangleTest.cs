@@ -1,10 +1,11 @@
 using System;
 using GeometricObjects.Basic;
 using GeometricObjects.Figures;
-using GeometricObjectsTest.Values;
+using GeometricObjectsTest.Sources;
+using GeometricObjectsTest.Sourses;
 using NUnit.Framework;
 
-namespace GeometricObjectsTest
+namespace GeometricObjectsTest.Tests
 {
     [TestFixture]
     public class TriangleTest
@@ -14,7 +15,7 @@ namespace GeometricObjectsTest
         {
         }
         
-        [TestCaseSource(typeof(Triangle_Intersects_HasIntersection))]
+        [TestCaseSource(typeof(Triangle_Intersects_HasIntersection_Source))]
         public void Intersects_MultipleValues_HasIntersection(Triangle triangle, Ray ray, double expected)
         {
             bool intersects;
@@ -26,8 +27,8 @@ namespace GeometricObjectsTest
             Assert.AreEqual(expected, actual, Math.Pow(10, -12));
         }
 
-        [TestCaseSource(typeof(Triangle_Intersects_NoIntersection))]
-        public void Intersects_MultipleValues_NoIntersection(Triangle triangle, Ray ray, double expected)
+        [TestCaseSource(typeof(Triangle_Intersects_NoIntersection_Source))]
+        public void Intersects_MultipleValues_NoIntersection(Triangle triangle, Ray ray)
         {
             bool intersects;
 

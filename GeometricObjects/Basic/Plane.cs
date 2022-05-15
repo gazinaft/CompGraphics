@@ -10,7 +10,7 @@
             t = 0;
             //normal.dot(ray.dir) = 0
             var scalar = Normal.Dot(ray.Direction);
-            if (scalar > 1e-6) return false; // one sided cross
+            if (scalar > -1e-6) return false; // one sided cross
             /*
              * x = x1 + at
              * y = y1 + bt

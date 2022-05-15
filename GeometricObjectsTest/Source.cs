@@ -9,7 +9,7 @@ namespace GeometricObjectsTest
 {
     abstract class Source<T> : IEnumerable
     {
-        public const string TestsFullPathDirectory = @"C:\Path\To\Values\";
+        public const string TestsFullPathDirectory = @"C:\Users\Mihailo\Source\Repos\gazinaft\CompGraphics\GeometricObjectsTest\Values\";
 
         protected abstract string FileName { get; }
 
@@ -46,7 +46,7 @@ namespace GeometricObjectsTest
                 object[] args = new object[length];
                 for (int i = 0; i < length; i++)
                 {
-                    args[i] = argsProperties[i].GetValue(arg) ?? new object();
+                    args[i] = argsProperties[i].GetValue(arg)!;
                 }
                 yield return args;
             }

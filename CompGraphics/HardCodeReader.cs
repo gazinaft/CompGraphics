@@ -2,20 +2,21 @@ using System.Collections.Generic;
 using GeometricObjects;
 using GeometricObjects.Figures;
 
-namespace CompGraphics;
-
-public class HardCodeReader : IReader
+namespace CompGraphics
 {
-    private List<ITraceable> _traceables = new List<ITraceable>();
-    
-    public ITraceable[] Read(string path)
+    public class HardCodeReader : IReader
     {
-        return _traceables.ToArray();
-    }
+        private List<ITraceable> _traceables = new List<ITraceable>();
 
-    public HardCodeReader Add(ITraceable obj)
-    {
-        _traceables.Add(obj);
-        return this;
+        public ITraceable[] Read(string path)
+        {
+            return _traceables.ToArray();
+        }
+
+        public HardCodeReader Add(ITraceable obj)
+        {
+            _traceables.Add(obj);
+            return this;
+        }
     }
 }
