@@ -7,6 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompGraphics", "CompGraphic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeometricObjects", "GeometricObjects\GeometricObjects.csproj", "{06EF1347-026E-4E65-8AB8-ED5E391F61C0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeometricObjectsTest", "GeometricObjectsTest\GeometricObjectsTest.csproj", "{9377205C-9912-4461-ACBA-CF4A1ACAA80B}"
+EndProject
+
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
