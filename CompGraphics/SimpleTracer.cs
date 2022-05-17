@@ -9,36 +9,21 @@ namespace CompGraphics
     {
         private Camera _camera;
         private DirectionalLight _light;
-        private Color BgColor { get; }
+        private ICrossFinder _crossFinder;
+        private readonly Color _bgColor;
 
-        public SimpleTracer(Camera camera, DirectionalLight light, Color bgColor)
+        public SimpleTracer(Camera camera, DirectionalLight light, ICrossFinder crossFinder, Color bgColor)
         {
             _camera = camera;
             _light = light;
-            BgColor = bgColor;
+            _crossFinder = crossFinder;
+            _bgColor = bgColor;
         }
 
         private ITraceable ClosestCross(int x, int y, ITraceable[] traceables, out double t, out Vertex p)
         {
-            ITraceable closest = null;
-            var minDistance = double.MaxValue;
             var ray = _camera.GetRay(x, y);
-            foreach (var traceable in traceables)
-            {
-                if (traceable.Intersects(ray, out var tt))
-                {
-                    if (tt < minDistance)
-                    {
-                        minDistance = tt;
-                        closest = traceable;
-                        
-                    }
-                }
-            }
-
-            t = minDistance;
-            p = ray.Origin + ray.Direction.Scale(t);
-            return closest;
+            return _crossFinder.ClosestCross(ray, traceables, out t, out p);
         }
 
         private Color Raycast(int x, int y, ITraceable[] traceables)
@@ -48,15 +33,13 @@ namespace CompGraphics
             var closest = ClosestCross(x, y, traceables, out t, out p);
             if (closest == null)
             {
-                return BgColor;
+                return _bgColor;
             }
             var norm = closest.NormalAt(p);
             var dot = Math.Max(_light.Direction.Dot(norm), 0.0);
             var lighting = (int)Math.Ceiling(255 * dot);
             return Color.FromArgb(lighting, lighting, lighting);
         }
-        
-        
 
         public Color[,] Trace(ITraceable[] traceables)
         {
@@ -71,5 +54,6 @@ namespace CompGraphics
 
             return res;
         }
+        
     }
 }
