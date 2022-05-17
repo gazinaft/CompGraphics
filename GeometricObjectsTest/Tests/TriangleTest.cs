@@ -24,7 +24,7 @@ namespace GeometricObjectsTest.Tests
 
             Assert.IsTrue(intersects);
             Assert.GreaterOrEqual(actual, 0);
-            Assert.AreEqual(expected, actual, Math.Pow(10, -12));
+            Assert.AreEqual(expected, actual, Math.Pow(10, -7));
         }
 
         [TestCaseSource(typeof(Triangle_Intersects_NoIntersection_Source))]
