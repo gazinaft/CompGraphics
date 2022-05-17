@@ -2,14 +2,21 @@
 {
     public class Plane : ITraceable
     {
-        public Vector Normal { get; set; }
+        private Vector _normal;
+
+        public Vector Normal
+        {
+            get => _normal;
+            set => _normal = value.Normalize();
+        }
+
         public Vertex Point { get; set; }
 
         public bool Intersects(Ray ray, out double t)
         {
             t = 0;
             //normal.dot(ray.dir) = 0
-            var scalar = Normal.Dot(ray.Direction);
+            var scalar = _normal.Dot(ray.Direction);
             if (scalar > -1e-6) return false; // one sided cross
             /*
              * x = x1 + at
@@ -24,14 +31,14 @@
              * t = (Ax2 + By2 + Cz2 - Ax1 - By1 - Cz1)/(Aa + Bb + Cc)
              *   = (A(x2 - x1) + B(y2 - y1) + C(z2 - z1))/scalar
              * **/
-            t = Normal.Dot(Point - ray.Origin) / scalar;
+            t = _normal.Dot(Point - ray.Origin) / scalar;
             if (t < 0) return false;
             return true;
         }
 
         public Vector NormalAt(Vertex p)
         {
-            return Normal.Normalize();
+            return _normal;
         }
     }
 }
