@@ -5,13 +5,12 @@ VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompGraphics", "CompGraphics\CompGraphics.csproj", "{735E923F-C9C3-42FD-AB3F-15B58CB705EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeometricObjects", "GeometricObjects\GeometricObjects.csproj", "{06EF1347-026E-4E65-8AB8-ED5E391F61C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeometricObjects", "GeometricObjects\GeometricObjects.csproj", "{06EF1347-026E-4E65-8AB8-ED5E391F61C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeometricObjectsTest", "GeometricObjectsTest\GeometricObjectsTest.csproj", "{9377205C-9912-4461-ACBA-CF4A1ACAA80B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeometricObjectsTest", "GeometricObjectsTest\GeometricObjectsTest.csproj", "{9377205C-9912-4461-ACBA-CF4A1ACAA80B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TracerTests", "TracerTests\TracerTests.csproj", "{783AA6F3-CC8B-462A-8230-A085F338E266}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TracerTests", "TracerTests\TracerTests.csproj", "{783AA6F3-CC8B-462A-8230-A085F338E266}"
 EndProject
-
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +27,8 @@ Global
 		{06EF1347-026E-4E65-8AB8-ED5E391F61C0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9377205C-9912-4461-ACBA-CF4A1ACAA80B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9377205C-9912-4461-ACBA-CF4A1ACAA80B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9377205C-9912-4461-ACBA-CF4A1ACAA80B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9377205C-9912-4461-ACBA-CF4A1ACAA80B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{783AA6F3-CC8B-462A-8230-A085F338E266}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{783AA6F3-CC8B-462A-8230-A085F338E266}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{783AA6F3-CC8B-462A-8230-A085F338E266}.Release|Any CPU.ActiveCfg = Release|Any CPU

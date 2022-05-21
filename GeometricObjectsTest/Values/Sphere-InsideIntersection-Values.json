@@ -1,0 +1,25 @@
+[
+  {
+    "Sphere": {
+      "Center": {
+        "X": 0,
+        "Y": 0,
+        "Z": 0
+      },
+      "Radius": 1
+    },
+    "Ray": {
+      "Direction": {
+        "X": 0,
+        "Y": 1,
+        "Z": 0
+      },
+      "Origin": {
+        "X": 0,
+        "Y": 0,
+        "Z": 0
+      }
+    },
+    "Expected": 1
+  }
+]
