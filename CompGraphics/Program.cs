@@ -26,7 +26,9 @@ namespace CompGraphics
                 );
             var writer = new PpmWriter(@"D:\Polyteco\Course3\CompGraphics\Figures.ppm");
 
-            writer.Write(tracer.Trace(reader.Read(PATH)));
+            var traceables = reader.Read(PATH);
+            var pixels = tracer.Trace(traceables);
+            writer.Write(pixels);
         }
     }
 }
