@@ -28,7 +28,7 @@ namespace ObjReader
             for (int i = 0; i < indexesLength; i++)
             {
                 var indexSplit = indexes[i].Split('/');
-                vertices[i] = objPool.Vertices[int.Parse(indexSplit[0])];
+                vertices[i] = objPool.Vertices[int.Parse(indexSplit[0]) - 1];
                 if (indexSplit.Length > 0 && int.TryParse(indexSplit[1], out int textureIndex))
                 {
                     //TODO: Add vertex texture logic

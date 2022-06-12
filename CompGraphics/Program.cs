@@ -19,12 +19,12 @@ namespace CompGraphics
                 .Build();
                 
             var tracer = new SimpleTracer(
-                new Camera(1000, 1000) {Pov = new Vertex(3, 0, 0)},
+                new Camera(300, 300) {Pov = new Vertex(3, 0, 0)},
                 new DirectionalLight() {Direction = new Vector(-1, 0, 0)},
                 new SimpleCrossFinder(),
                 Color.LightBlue
                 );
-            var writer = new PpmWriter(@"D:\Polyteco\Course3\CompGraphics\Figures.ppm");
+            var writer = new PpmWriter(@"D:\Polyteco\Course3\CompGraphics\cow.ppm");
 
             var traceables = reader.Read(PATH);
             var pixels = tracer.Trace(traceables);
