@@ -1,6 +1,6 @@
-using GeometricObjects;
+﻿using GeometricObjects;
 
-namespace CompGraphics
+namespace Core
 {
     public interface IReader
     {

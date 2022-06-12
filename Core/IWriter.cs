@@ -1,6 +1,6 @@
-using System.Drawing;
+﻿using System.Drawing;
 
-namespace CompGraphics
+namespace Core
 {
     public interface IWriter
     {

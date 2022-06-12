@@ -1,7 +1,7 @@
-using System.Drawing;
+﻿using System.Drawing;
 using GeometricObjects;
 
-namespace CompGraphics
+namespace Core
 {
     public interface ITracer
     {

@@ -1,29 +1,31 @@
+using Core;
 using GeometricObjects;
 using GeometricObjects.Basic;
 
-namespace CompGraphics;
-
-public class SimpleCrossFinder : ICrossFinder
+namespace CompGraphics
 {
-    public ITraceable ClosestCross(Ray ray, ITraceable[] traceables, out double t, out Vertex p)
+    public class SimpleCrossFinder : ICrossFinder
     {
-        ITraceable closest = null;
-        var minDistance = double.MaxValue;
-        foreach (var traceable in traceables)
+        public ITraceable ClosestCross(Ray ray, ITraceable[] traceables, out double t, out Vertex p)
         {
-            if (traceable.Intersects(ray, out var tt))
+            ITraceable closest = null;
+            var minDistance = double.MaxValue;
+            foreach (var traceable in traceables)
             {
-                if (tt < minDistance)
+                if (traceable.Intersects(ray, out var tt))
                 {
-                    minDistance = tt;
-                    closest = traceable;
-                        
+                    if (tt < minDistance)
+                    {
+                        minDistance = tt;
+                        closest = traceable;
+
+                    }
                 }
             }
-        }
 
-        t = minDistance;
-        p = ray.Origin + ray.Direction.Scale(t);
-        return closest;
+            t = minDistance;
+            p = ray.Origin + ray.Direction.Scale(t);
+            return closest;
+        }
     }
 }

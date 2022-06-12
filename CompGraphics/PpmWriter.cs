@@ -1,33 +1,35 @@
+using Core;
 using System.Drawing;
 using System.IO;
 
-namespace CompGraphics;
-
-public class PpmWriter: IWriter
+namespace CompGraphics
 {
-    private string _path;
-    
-    public PpmWriter(string path)
+    public class PpmWriter: IWriter
     {
-        _path = path;
-    }
+        private string _path;
     
-    public void Write(Color[,] pixels)
-    {
-        StreamWriter file = new(_path);
-        file.WriteLine("P3");
-        file.WriteLine(pixels.GetLength(0) + " " + pixels.GetLength(1));
-        file.WriteLine("255");
-        file.WriteLine();
-        for (int i = 0; i < pixels.GetLength(1); i++)
+        public PpmWriter(string path)
         {
-            for (int j = 0; j < pixels.GetLength(0); j++)
-            {
-                var p = pixels[j, i];
-                file.WriteLine(p.R + " " + p.G + " " + p.B);
-            }
+            _path = path;
         }
-        file.Flush();
-        file.Close();
+    
+        public void Write(Color[,] pixels)
+        {
+            StreamWriter file = new(_path);
+            file.WriteLine("P3");
+            file.WriteLine(pixels.GetLength(0) + " " + pixels.GetLength(1));
+            file.WriteLine("255");
+            file.WriteLine();
+            for (int i = 0; i < pixels.GetLength(1); i++)
+            {
+                for (int j = 0; j < pixels.GetLength(0); j++)
+                {
+                    var p = pixels[j, i];
+                    file.WriteLine(p.R + " " + p.G + " " + p.B);
+                }
+            }
+            file.Flush();
+            file.Close();
+        }
     }
 }
