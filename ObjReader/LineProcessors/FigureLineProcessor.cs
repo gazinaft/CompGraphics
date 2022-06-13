@@ -23,7 +23,6 @@ namespace ObjReader
             var indexes = line.Split(' ')[1..];
             int indexesLength = indexes.Length;
 
-            //TODO: Add normals to vertices
             Vertex[] vertices = new Vertex[indexesLength];
             for (int i = 0; i < indexesLength; i++)
             {
@@ -35,7 +34,7 @@ namespace ObjReader
                 }
                 if (indexSplit.Length > 1 && int.TryParse(indexSplit[2], out int normalIndex))
                 {
-                    //TODO: Add vertex normal logic
+                    vertices[i].Normal = objPool.Normals[normalIndex];
                 }
             }
 
