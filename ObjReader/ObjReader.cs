@@ -23,12 +23,16 @@ namespace ObjReader
             using FileStream obj = File.OpenRead(path);
             using StreamReader reader = new(obj);
             string line;
-            int readlines = 0;
             while ((line = reader.ReadLine()) != null)
             {
-                var keyword = line.Substring(0, line.IndexOf(' '));
+                if (line == string.Empty)
+                {
+                    continue;
+                }
+
+                int whitespace = line.IndexOf(' ');
+                var keyword = whitespace <= 0 ? line : line.Substring(0, whitespace);
                 processors.SingleOrDefault(p => p.Keyword == keyword)?.Execute(line);
-                readlines++;
             }
             return objPool.GetTraceables();
         }

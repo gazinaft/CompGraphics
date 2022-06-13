@@ -17,10 +17,12 @@ namespace CompGraphics
                 .Clockwise(false)
                 .Culture(CultureInfo.InvariantCulture)
                 .Build();
-                
+
+            //Camera camera = new Camera(100, 100) { Pov = new Vertex(0, 10000, 0) };
+            Camera camera = new Camera(500, 500) { Pov = new Vertex(10000, 0, 0) };
             var tracer = new SimpleTracer(
-                new Camera(300, 300) {Pov = new Vertex(3, 0, 0)},
-                new DirectionalLight() {Direction = new Vector(-1, 0, 0)},
+                camera,
+                new DirectionalLight() { Direction = new Vector(-1, 0, 0)},
                 new SimpleCrossFinder(),
                 Color.LightBlue
                 );

@@ -6,6 +6,7 @@ namespace GeometricObjects.Basic
     public class Camera
     {
         private Vector _direction = new Vector(-1.0, 0, 0);
+        //private Vector _direction = new Vector(0, -1.0, 0);//wtf
         public Vertex Pov { get; set; }
 
         public Vector Direction
