@@ -11,9 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeometricObjectsTest", "Geo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TracerTests", "TracerTests\TracerTests.csproj", "{783AA6F3-CC8B-462A-8230-A085F338E266}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{4DB30FDE-1015-493B-8DD5-08388DD62CC4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{4DB30FDE-1015-493B-8DD5-08388DD62CC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObjReader", "ObjReader\ObjReader.csproj", "{76089E06-9DA3-4F70-B8E1-EF9EC6C946E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObjReader", "ObjReader\ObjReader.csproj", "{76089E06-9DA3-4F70-B8E1-EF9EC6C946E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Matrix", "Matrix\Matrix.csproj", "{2B997A3F-1A69-4B74-ADFD-FD82A41EEBC3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{76089E06-9DA3-4F70-B8E1-EF9EC6C946E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76089E06-9DA3-4F70-B8E1-EF9EC6C946E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76089E06-9DA3-4F70-B8E1-EF9EC6C946E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B997A3F-1A69-4B74-ADFD-FD82A41EEBC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B997A3F-1A69-4B74-ADFD-FD82A41EEBC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B997A3F-1A69-4B74-ADFD-FD82A41EEBC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B997A3F-1A69-4B74-ADFD-FD82A41EEBC3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
