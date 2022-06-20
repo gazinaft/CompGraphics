@@ -1,9 +1,10 @@
-﻿using GeometricObjects;
+﻿using System.Collections.Generic;
+using GeometricObjects;
 
 namespace Core
 {
     public interface IReader
     {
-        ITraceable[] Read(string path);
+        List<ITraceable> Read(string path);
     }
 }

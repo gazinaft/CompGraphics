@@ -18,7 +18,7 @@ namespace ObjReader
             this.objPool = objPool;
         }
 
-        public ITraceable[] Read(string path)
+        public List<ITraceable> Read(string path)
         {
             using FileStream obj = File.OpenRead(path);
             using StreamReader reader = new(obj);

@@ -34,7 +34,7 @@ namespace ObjReader
                 }
                 if (indexSplit.Length > 1 && int.TryParse(indexSplit[2], out int normalIndex))
                 {
-                    vertices[i].Normal = objPool.Normals[normalIndex];
+                    vertices[i].Normal = objPool.Normals[normalIndex - 1];
                 }
             }
 

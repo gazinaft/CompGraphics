@@ -31,9 +31,9 @@ namespace GeometricObjects.Basic
             ScaleX = scaleX;
             ScaleY = scaleY;
             
-            TopLeft = new Vertex(0, Height/2.0, Width/2.0);
-            TopRight = new Vertex(0, Height/2.0, -Width/2.0);
-            BottomLeft = new Vertex(0, -Height/2.0, Width/2.0);
+            TopLeft = new Vertex(Width/2.0, 0, Height/2.0);
+            TopRight = new Vertex(-Width/2.0, 0, Height/2.0);
+            BottomLeft = new Vertex(Width/2.0, 0, -Height/2.0);;
         }
         
         private Vector PlusX => (TopRight - TopLeft).Scale(1.0/ScaleX); // X increases to right

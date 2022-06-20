@@ -9,9 +9,9 @@ namespace CompGraphics
     {
         private List<ITraceable> _traceables = new List<ITraceable>();
 
-        public ITraceable[] Read(string path)
+        public List<ITraceable> Read(string path)
         {
-            return _traceables.ToArray();
+            return _traceables;
         }
 
         public HardCodeReader Add(ITraceable obj)

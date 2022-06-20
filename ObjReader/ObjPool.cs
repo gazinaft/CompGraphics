@@ -10,9 +10,9 @@ namespace ObjReader
         public List<Normal> Normals { get; private set; } = new();
         public List<ITraceable> Traceables { get; private set; } = new();
 
-        public ITraceable[] GetTraceables()
+        public List<ITraceable> GetTraceables()
         {
-            return Traceables.ToArray();
+            return Traceables;
         }
     }
 }
