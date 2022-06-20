@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using Core;
@@ -10,10 +11,35 @@ namespace CompGraphics
 {
     class Program
     {
-        private const string PATH = @"D:\Polyteco\Course3\CompGraphics\cow.obj";
+        
 
         static void Main(string[] args)
         {
+            if (args.Length == 0)
+            {
+                Console.WriteLine("Pass cli arguments");
+                Console.WriteLine("For example: raytracer.exe --source=cow.obj --output=rendered.ppm");
+            }
+            
+            var cliArgs = new Dictionary<string, string>();
+            foreach (var arg in args)
+            {
+                var spl = arg.Split("=");
+                cliArgs[spl[0]] = spl[1];
+            }
+
+            if (!cliArgs.ContainsKey("--source"))
+            {
+                return;
+            }
+            
+            string readPath = cliArgs["--source"];
+            string writePath = "Figures.ppm";
+            if (cliArgs.ContainsKey("--output"))
+            {
+                writePath = cliArgs["--output"];
+            }
+            
             var reader = ObjReaderBuilder.Init()
                 .Clockwise(true)
                 .Culture(CultureInfo.InvariantCulture)
@@ -34,9 +60,9 @@ namespace CompGraphics
                 new HardShader(crossFinder, 0.001f),
                 Color.LightBlue
                 );
-            var writer = new PpmWriter(@"D:\Polyteco\Course3\CompGraphics\cow.ppm");
+            var writer = new PpmWriter(writePath);
 
-            var traceables = reader.Read(PATH);
+            var traceables = reader.Read(readPath);
             traceables.Add(new Sphere() { Center = new Vertex(1, 20, 3), Radius = 2});
             var pixels = tracer.Trace(traceables);
             writer.Write(pixels);
