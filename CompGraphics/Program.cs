@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
+using System.Linq;
 using Core;
 using GeometricObjects.Basic;
 using GeometricObjects.Figures;
+using Matrix;
 using ObjReader;
 
 namespace CompGraphics
@@ -55,7 +57,7 @@ namespace CompGraphics
             
             var tracer = new SimpleTracer(
                 camera,
-                new DirectionalLight() { Direction = new Vector(0, -1, 0)},
+                new DirectionalLight() { Direction = new Vector(-1, 0, 0)},
                 crossFinder,
                 new HardShader(crossFinder, 0.001f),
                 Color.LightBlue
@@ -63,6 +65,7 @@ namespace CompGraphics
             var writer = new PpmWriter(writePath);
 
             var traceables = reader.Read(readPath);
+            Transformations.Rotate(traceables.Cast<Triangle>(), new Vector(1, 0, 0), 90);
             traceables.Add(new Sphere() { Center = new Vertex(1, 20, 3), Radius = 2});
             var pixels = tracer.Trace(traceables);
             writer.Write(pixels);
