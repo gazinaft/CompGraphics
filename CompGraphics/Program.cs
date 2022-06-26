@@ -17,30 +17,33 @@ namespace CompGraphics
 
         static void Main(string[] args)
         {
-            if (args.Length == 0)
-            {
-                Console.WriteLine("Pass cli arguments");
-                Console.WriteLine("For example: raytracer.exe --source=cow.obj --output=rendered.ppm");
-            }
+            // if (args.Length == 0)
+            // {
+            //     Console.WriteLine("Pass cli arguments");
+            //     Console.WriteLine("For example: raytracer.exe --source=cow.obj --output=rendered.ppm");
+            // }
+            //
+            // var cliArgs = new Dictionary<string, string>();
+            // foreach (var arg in args)
+            // {
+            //     var spl = arg.Split("=");
+            //     cliArgs[spl[0]] = spl[1];
+            // }
+            //
+            // if (!cliArgs.ContainsKey("--source"))
+            // {
+            //     return;
+            // }
+            //
+            // string readPath = cliArgs["--source"];
+            // string writePath = "Figures.ppm";
+            // if (cliArgs.ContainsKey("--output"))
+            // {
+            //     writePath = cliArgs["--output"];
+            // }
             
-            var cliArgs = new Dictionary<string, string>();
-            foreach (var arg in args)
-            {
-                var spl = arg.Split("=");
-                cliArgs[spl[0]] = spl[1];
-            }
-
-            if (!cliArgs.ContainsKey("--source"))
-            {
-                return;
-            }
-            
-            string readPath = cliArgs["--source"];
+            string readPath = "cow.obj";
             string writePath = "Figures.ppm";
-            if (cliArgs.ContainsKey("--output"))
-            {
-                writePath = cliArgs["--output"];
-            }
             
             var reader = ObjReaderBuilder.Init()
                 .Clockwise(true)
@@ -57,7 +60,8 @@ namespace CompGraphics
             
             var tracer = new SimpleTracer(
                 camera,
-                new DirectionalLight() { Direction = new Vector(-1, 0, 0)},
+                // new DirectionalLight() { Direction = new Vector(-1, 0, 0), Intensity = 1, LColor = Color.Wheat},
+                new AmbientLight() { Intensity = 1, LColor = Color.Blue},
                 crossFinder,
                 new HardShader(crossFinder, 0.001f),
                 Color.LightBlue

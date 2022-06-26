@@ -11,12 +11,12 @@ namespace CompGraphics
     public class SimpleTracer : ITracer
     {
         private Camera _camera;
-        private DirectionalLight _light;
+        private ILighting _light;
         private ICrossFinder _crossFinder;
         private readonly Color _bgColor;
         private readonly IShader _shader;
 
-        public SimpleTracer(Camera camera, DirectionalLight light, ICrossFinder crossFinder, IShader shader, Color bgColor)
+        public SimpleTracer(Camera camera, ILighting light, ICrossFinder crossFinder, IShader shader, Color bgColor)
         {
             _camera = camera;
             _light = light;

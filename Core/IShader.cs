@@ -7,6 +7,6 @@ namespace Core
 {
     public interface IShader
     {
-        Color Shade(Vertex v, Vector n, List<ITraceable> traceables, DirectionalLight l);
+        Color Shade(Vertex v, Vector n, List<ITraceable> traceables, ILighting l);
     }
 }
