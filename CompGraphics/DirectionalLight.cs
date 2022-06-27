@@ -27,10 +27,8 @@ namespace GeometricObjects.Basic
             {
                 return Color.Black;
             }
-            return Color.FromArgb(
-                (int)(LColor.R * dot * Intensity),
-                (int)(LColor.G * dot * Intensity), 
-                (int)(LColor.B * dot * Intensity));
+
+            return Coloristycs.Mult(LColor, (float)(dot * Intensity));
         }
     }
 }

@@ -11,15 +11,15 @@ namespace CompGraphics
     public class SimpleTracer : ITracer
     {
         private Camera _camera;
-        private ILighting _light;
+        private List<ILighting> _lights;
         private ICrossFinder _crossFinder;
         private readonly Color _bgColor;
         private readonly IShader _shader;
 
-        public SimpleTracer(Camera camera, ILighting light, ICrossFinder crossFinder, IShader shader, Color bgColor)
+        public SimpleTracer(Camera camera, List<ILighting> lights, ICrossFinder crossFinder, IShader shader, Color bgColor)
         {
             _camera = camera;
-            _light = light;
+            _lights = lights;
             _crossFinder = crossFinder;
             _shader = shader;
             _bgColor = bgColor;
@@ -43,7 +43,7 @@ namespace CompGraphics
             }
             
             var norm = closest.NormalAt(p);
-            return _shader.Shade(p, norm, traceables, _light);
+            return _shader.Shade(p, norm, traceables, _lights);
         }
 
         public Color[,] Trace(List<ITraceable> traceables)

@@ -60,8 +60,11 @@ namespace CompGraphics
             
             var tracer = new SimpleTracer(
                 camera,
-                // new DirectionalLight() { Direction = new Vector(-1, 0, 0), Intensity = 1, LColor = Color.Wheat},
-                new AmbientLight() { Intensity = 1, LColor = Color.Blue},
+                new List<ILighting>() {
+                    new PointLight(new Vertex(0, 10, -8), 50f) { LColor = Color.Red, Intensity = 0.7f},
+                    new DirectionalLight() { Direction = new Vector(-1, 0, 0), Intensity = 0.8f, LColor = Color.Blue },
+                    new AmbientLight() { Intensity = 0.05f, LColor = Color.White},
+                },
                 crossFinder,
                 new HardShader(crossFinder, 0.001f),
                 Color.LightBlue

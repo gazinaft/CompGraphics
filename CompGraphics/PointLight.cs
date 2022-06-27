@@ -28,9 +28,6 @@ public class PointLight: ILighting
         var distance = (Position - crossPoint).Abs;
         var distanceMultiplier = Fading / (distance * distance);
 
-        return Color.FromArgb(
-            (int)(LColor.R * distanceMultiplier * Intensity),
-            (int)(LColor.G * distanceMultiplier * Intensity), 
-            (int)(LColor.B * distanceMultiplier * Intensity));
+        return Coloristycs.Mult(LColor, (float)(distanceMultiplier * Intensity));
     }
 }
