@@ -6,6 +6,6 @@ namespace Core
 {
     public interface ITracer
     {
-        public Color[,] Trace(List<ITraceable> traceables);
+        public Color[,] Trace();
     }
 }

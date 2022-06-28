@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
-using GeometricObjects;
+﻿using GeometricObjects;
 using GeometricObjects.Basic;
+using System.Collections.Generic;
+using Core;
 
-namespace Core
+namespace AccelerationStructures
 {
-    public interface ICrossFinder
+    public interface IAccelStruct : ICrossFinder
     {
         void Apply(IEnumerable<ITraceable> traceables);
         ITraceable ClosestCross(Ray ray, out double t, out Vertex p);

@@ -10,7 +10,8 @@ namespace GeometricObjects.Figures
         public Vertex V1 { get; }
         public Vertex V2 { get; }
         private static readonly double EPSILON = 0.0000001;
-        
+        private BoundBox bounds;
+
         public Triangle(Vertex v0, Vertex v1, Vertex v2)
         {
             V0 = v0;
@@ -48,5 +49,18 @@ namespace GeometricObjects.Figures
         {
             return ((V1 - V0) * (V2 - V0)).Normalize();
         }
+
+        public BoundBox GetBounds()
+        {
+            if (bounds == null)
+            {
+                bounds = new(V0);
+                bounds.Extend(V1);
+                bounds.Extend(V2);
+            }
+            return bounds;
+        }
+
+        public IMaterial Material { get; set; }
     }
 }

@@ -6,6 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\AccelerationStructures\AccelerationStructures.csproj" />
       <ProjectReference Include="..\Core\Core.csproj" />
       <ProjectReference Include="..\GeometricObjects\GeometricObjects.csproj" />
       <ProjectReference Include="..\Matrix\Matrix.csproj" />
