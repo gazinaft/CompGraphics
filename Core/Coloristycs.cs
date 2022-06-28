@@ -17,6 +17,14 @@ namespace Core
                 ColorClamp((int)(c.B * coef)));
         }
 
+        public static Color Mult(Color c1, Color c2)
+        {
+            return Color.FromArgb(ColorClamp(c1.R * c2.R / 255),
+                ColorClamp(c1.G * c2.G / 255),
+                ColorClamp(c1.B * c2.B / 255));
+        }
+
+        
         public static int ColorClamp(int x)
         {
             return Math.Clamp(x, 0, 255);

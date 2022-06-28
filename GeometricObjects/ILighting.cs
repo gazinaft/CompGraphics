@@ -1,7 +1,7 @@
 using System.Drawing;
 using GeometricObjects.Basic;
 
-namespace Core
+namespace GeometricObjects
 {
     public interface ILighting
     {

@@ -4,10 +4,11 @@ using GeometricObjects.Figures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Core;
 
 namespace AccelerationStructures
 {
-    public class BvhAccelStruct : IAccelStruct
+    public class BvhAccelStruct : ICrossFinder
     {
         Node root;
 
@@ -77,6 +78,21 @@ namespace AccelerationStructures
 
             p = ray.Origin + ray.Direction.Scale(t);
             return closest;
+        }
+
+        public bool AnyCross(Ray ray)
+        {
+            ITraceable closest = null;
+
+            foreach (var node in Raycast(ray, root))
+            {
+                if (node.traceable.Intersects(ray, out double tt))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private IEnumerable<Node> Raycast(Ray ray, Node node)

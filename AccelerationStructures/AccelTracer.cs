@@ -12,34 +12,37 @@ namespace AccelerationStructures
     {
         private readonly Camera camera;
         private readonly Color bgColor;
-        private readonly IAccelStruct accelStruct;
-        private readonly IShader _shader;
-        private readonly List<ILighting> lights;
+        private readonly ICrossFinder accelStruct;
+        private Scene _scene;
 
-        public AccelTracer(Camera camera, Color bgColor, IAccelStruct accelStruct, List<ILighting> lights, IShader shader)
+        public AccelTracer(Camera camera, Color bgColor, ICrossFinder accelStruct, Scene scene)
         {
             this.camera = camera;
             this.bgColor = bgColor;
             this.accelStruct = accelStruct;
-            this.lights = lights;
-            _shader = shader;
+            _scene = scene;
         }
 
-        public Color[,] Trace(List<ITraceable> traceables)
+        public Color[,] Trace()
         {
-            accelStruct.Apply(traceables);
+            accelStruct.Apply(_scene.Geometry.Value);
             var res = new Color[camera.ScaleX, camera.ScaleY];
-            Parallel.For(0, camera.ScaleX * camera.ScaleY, xy =>
+            // Parallel.For(0, camera.ScaleX * camera.ScaleY, xy =>
+            // {
+            //     int x = xy / camera.ScaleY;
+            //     int y = xy % camera.ScaleY;
+            //     res[x, y] = Raycast(x, y);
+            // });
+            for (int xy = 0; xy < camera.ScaleX * camera.ScaleY; xy++)
             {
                 int x = xy / camera.ScaleY;
                 int y = xy % camera.ScaleY;
-                res[x, y] = Raycast(x, y, traceables);
-            });
-
+                res[x, y] = Raycast(x, y);
+            }
             return res;
         }
 
-        private Color Raycast(int x, int y, List<ITraceable> traceables)
+        private Color Raycast(int x, int y)
         {
             var ray = camera.GetRay(x, y);
             var closest = accelStruct.ClosestCross(ray, out _, out Vertex p);
@@ -50,7 +53,7 @@ namespace AccelerationStructures
 
             var norm = closest.NormalAt(p);
             // return Color.FromArgb(clr, clr, clr);
-            return _shader.Shade(p, norm, traceables, lights);
+            return closest.Material.BRDF(ray, p, norm, _scene);
         }
     }
 }

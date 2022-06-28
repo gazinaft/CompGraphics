@@ -60,5 +60,7 @@ namespace GeometricObjects.Figures
             }
             return bounds;
         }
+
+        public IMaterial Material { get; set; }
     }
 }
