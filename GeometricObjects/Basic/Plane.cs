@@ -1,4 +1,6 @@
-﻿namespace GeometricObjects.Basic
+﻿using GeometricObjects.Figures;
+
+namespace GeometricObjects.Basic
 {
     public class Plane : ITraceable
     {
@@ -11,6 +13,8 @@
         }
 
         public Vertex Point { get; set; }
+
+        public BoundBox GetBounds() => new();
 
         public bool Intersects(Ray ray, out double t)
         {

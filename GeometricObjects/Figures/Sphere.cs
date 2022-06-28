@@ -8,6 +8,12 @@ namespace GeometricObjects.Figures
         public Vertex Center { get; set; }
         public double Radius { get; set; }
 
+        public BoundBox GetBounds()
+        {
+            return new(Center.X - Radius, Center.Y - Radius, Center.Z - Radius,
+                Center.X + Radius, Center.Y + Radius, Center.Z + Radius);
+        }
+
         public bool Intersects(Ray ray, out double t)
         {
             //(o + dt - c)^2 = r^2

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using AccelerationStructures;
 using Core;
 using GeometricObjects.Basic;
 using GeometricObjects.Figures;
@@ -55,20 +56,21 @@ namespace CompGraphics
             //     .Add(new Triangle(new Vertex(1, 0, 1), new Vertex(1, 0, -2), new Vertex(2, 4, 0)));
             
             //Camera camera = new Camera(100, 100) { Pov = new Vertex(0, 10000, 0) };
-            Camera camera = new Camera(100, 100) { Pov = new Vertex(0, 30, 0) };
+            Camera camera = new Camera(1000, 1000) { Pov = new Vertex(0, 30, 0) };
             var crossFinder = new SimpleCrossFinder();
-            
-            var tracer = new SimpleTracer(
-                camera,
-                new List<ILighting>() {
-                    new PointLight(new Vertex(0, 10, -8), 50f) { LColor = Color.Red, Intensity = 0.7f},
-                    new DirectionalLight() { Direction = new Vector(-1, 0, 0), Intensity = 0.8f, LColor = Color.Blue },
-                    new AmbientLight() { Intensity = 0.05f, LColor = Color.White},
-                },
-                crossFinder,
-                new HardShader(crossFinder, 0.001f),
-                Color.LightBlue
-                );
+
+            //var tracer = new SimpleTracer(
+            //    camera,
+            //    new DirectionalLight() { Direction = new Vector(-1, 0, 0)},
+            //    crossFinder,
+            //    new HardShader(crossFinder, 0.001f),
+            //    Color.LightBlue
+            //    );
+
+            var tracer = new AccelTracer(
+                camera, Color.Gray,
+                new BvhAccelStruct(),
+                new DirectionalLight() { Direction = new Vector(-1, 0, 0) });
             var writer = new PpmWriter(writePath);
 
             var traceables = reader.Read(readPath);
