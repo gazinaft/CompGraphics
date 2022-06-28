@@ -10,7 +10,6 @@ namespace AccelerationStructures
     public class BvhAccelStruct : IAccelStruct
     {
         Node root;
-        int nodecount = 1;
 
         public void Apply(IEnumerable<ITraceable> traceables)
         {
@@ -26,14 +25,8 @@ namespace AccelerationStructures
                 node.traceable = tr;
                 node.AABB = tr.GetBounds();
             }
-            //else if (traceables.Count() == 2)
-            //{
-                  //can be used for optimization
-            //}
             else
             {
-                var bounds = traceables.Select(t => t.GetBounds());
-
                 var mins = traceables.Select(t => t.GetBounds().Min).ToArray();
                 var maxs = traceables.Select(t => t.GetBounds().Max).ToArray();
 
@@ -64,12 +57,6 @@ namespace AccelerationStructures
                 node.lesser = CreateNode(tOrdered.Take(median));
                 node.greater = CreateNode(tOrdered.Skip(median));
             }
-
-            if (nodecount % 100 == 0)
-            {
-                Console.WriteLine($"Node {nodecount} added");
-            }
-            nodecount++;
 
             return node;
         }
