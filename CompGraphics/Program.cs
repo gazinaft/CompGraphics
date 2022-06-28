@@ -68,9 +68,13 @@ namespace CompGraphics
             //    );
 
             var tracer = new AccelTracer(
-                camera, Color.Gray,
+                camera, Color.LightBlue,
                 new BvhAccelStruct(),
-                new DirectionalLight() { Direction = new Vector(-1, 0, 0) });
+                new List<ILighting>() {
+                new DirectionalLight() { Direction = new Vector(-1, 0, 0), Intensity = 1f, LColor = Color.White}
+                },
+                new HardShader(new SimpleCrossFinder(), 0.001f)
+                );
             var writer = new PpmWriter(writePath);
 
             var traceables = reader.Read(readPath);

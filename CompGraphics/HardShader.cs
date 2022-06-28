@@ -28,8 +28,8 @@ namespace CompGraphics
                 var t = 0.0;
                 if (_crossFinder.AnyCross(ray, traceables, out t))
                 {
-                    Console.WriteLine(ray.Direction + " " + ray.Origin);
-                    Console.WriteLine(t);
+                    // Console.WriteLine(ray.Direction + " " + ray.Origin);
+                    // Console.WriteLine(t);
                     continue;
                 }
 

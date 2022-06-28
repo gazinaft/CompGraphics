@@ -13,14 +13,16 @@ namespace AccelerationStructures
         private readonly Camera camera;
         private readonly Color bgColor;
         private readonly IAccelStruct accelStruct;
-        private readonly DirectionalLight light;
+        private readonly IShader _shader;
+        private readonly List<ILighting> lights;
 
-        public AccelTracer(Camera camera, Color bgColor, IAccelStruct accelStruct, DirectionalLight light)
+        public AccelTracer(Camera camera, Color bgColor, IAccelStruct accelStruct, List<ILighting> lights, IShader shader)
         {
             this.camera = camera;
             this.bgColor = bgColor;
             this.accelStruct = accelStruct;
-            this.light = light;
+            this.lights = lights;
+            _shader = shader;
         }
 
         public Color[,] Trace(List<ITraceable> traceables)
@@ -31,13 +33,13 @@ namespace AccelerationStructures
             {
                 int x = xy / camera.ScaleY;
                 int y = xy % camera.ScaleY;
-                res[x, y] = Raycast(x, y);
+                res[x, y] = Raycast(x, y, traceables);
             });
 
             return res;
         }
 
-        private Color Raycast(int x, int y)
+        private Color Raycast(int x, int y, List<ITraceable> traceables)
         {
             var ray = camera.GetRay(x, y);
             var closest = accelStruct.ClosestCross(ray, out _, out Vertex p);
@@ -47,9 +49,8 @@ namespace AccelerationStructures
             }
 
             var norm = closest.NormalAt(p);
-            var clr = (int)Math.Ceiling(255 * Math.Max(light.Direction.Dot(norm), 0));
-            return Color.FromArgb(clr, clr, clr);
-            //return _shader.Shade(p, norm, traceables, _light);
+            // return Color.FromArgb(clr, clr, clr);
+            return _shader.Shade(p, norm, traceables, lights);
         }
     }
 }
