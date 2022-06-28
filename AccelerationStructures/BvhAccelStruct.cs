@@ -11,20 +11,44 @@ namespace AccelerationStructures
     {
         Node root;
         int nodecount = 1;
+        long t;
+        long stt = 0;
+        long bbt = 0;
 
         public void Apply(IEnumerable<ITraceable> traceables)
         {
+            long start, end; //======================
+            start = DateTime.Now.Ticks;
+
             root = CreateNode(traceables);
+
+            end = DateTime.Now.Ticks; //======================
+            t += end - start;
+            Console.WriteLine(t);
+            Console.WriteLine(stt);
+            Console.WriteLine(bbt);
         }
 
         private Node CreateNode(IEnumerable<ITraceable> traceables)
         {
+            long end, start;
+
             Node node = new();
             if (traceables.Count() == 1)
             {
-                var tr = traceables.First();
+                // TODO: optimize First() or MoveNext()
+                // Maybe enumerate collections before passing to method
+                // Current exec time for cow.obj: 8.5s
+                var enumerator = traceables.GetEnumerator();
+                start = DateTime.Now.Ticks;//======================
+                enumerator.MoveNext();
+                end = DateTime.Now.Ticks;//======================
+                var tr = enumerator.Current;
+
                 node.traceable = tr;
                 node.AABB = tr.GetBounds();
+
+                stt += end - start;
             }
             //else if (traceables.Count() == 2)
             //{
@@ -32,10 +56,14 @@ namespace AccelerationStructures
             //}
             else
             {
+                // TODO: make better aggregation
+                // And/or enumerate collections before passing to method
+                // Current exec time for cow.obj: 17s
+                start = DateTime.Now.Ticks; //======================
                 var bounds = traceables.Select(t => t.GetBounds());
 
-                var mins = bounds.Select(b => b.Min);
-                var maxs = bounds.Select(b => b.Max);
+                var mins = traceables.Select(t => t.GetBounds().Min).ToArray();
+                var maxs = traceables.Select(t => t.GetBounds().Max).ToArray();
 
                 var minX = mins.Select(m => m.X).Min();
                 var minY = mins.Select(m => m.Y).Min();
@@ -43,10 +71,15 @@ namespace AccelerationStructures
                 var maxX = maxs.Select(m => m.X).Max();
                 var maxY = maxs.Select(m => m.Y).Max();
                 var maxZ = maxs.Select(m => m.Z).Max();
+                end = DateTime.Now.Ticks; //======================
 
                 BoundBox bb = new(minX, minY, minZ, maxX, maxY, maxZ);
                 node.AABB = bb;
 
+                bbt += end - start;
+
+                // This code is already fast
+                // still need to check if will be slowed by optimization
                 IEnumerable<ITraceable> tOrdered;
                 var edgeX = maxX - minX;
                 var edgeY = maxY - minY;
