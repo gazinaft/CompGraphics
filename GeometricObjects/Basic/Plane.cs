@@ -15,6 +15,7 @@ namespace GeometricObjects.Basic
         public Vertex Point { get; set; }
 
         public BoundBox GetBounds() => new();
+        public IMaterial Material { get; set; }
 
         public bool Intersects(Ray ray, out double t)
         {

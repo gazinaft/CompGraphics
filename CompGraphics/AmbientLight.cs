@@ -1,6 +1,7 @@
 using System;
 using System.Drawing;
 using Core;
+using GeometricObjects;
 using GeometricObjects.Basic;
 
 namespace CompGraphics

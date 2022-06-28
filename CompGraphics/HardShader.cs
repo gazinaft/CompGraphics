@@ -26,7 +26,7 @@ namespace CompGraphics
             {
                 var ray = l.ShadowRay(n, castPoint);
                 var t = 0.0;
-                if (_crossFinder.AnyCross(ray, traceables, out t))
+                if (_crossFinder.AnyCross(ray))
                 {
                     // Console.WriteLine(ray.Direction + " " + ray.Origin);
                     // Console.WriteLine(t);

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Core;
 using GeometricObjects;
 using GeometricObjects.Basic;
@@ -7,7 +8,15 @@ namespace CompGraphics
 {
     public class SimpleCrossFinder : ICrossFinder
     {
-        public ITraceable ClosestCross(Ray ray, List<ITraceable> traceables, out double t, out Vertex p)
+        private List<ITraceable> traceables { get; set; }
+
+
+        public void Apply(IEnumerable<ITraceable> traceables)
+        {
+            this.traceables = traceables.ToList();
+        }
+
+        public ITraceable ClosestCross(Ray ray, out double t, out Vertex p)
         {
             ITraceable closest = null;
             var minDistance = double.MaxValue;
@@ -30,35 +39,16 @@ namespace CompGraphics
             return closest;
         }
 
-        public bool AnyCross(Ray r, List<ITraceable> traceables, out double t)
+        public bool AnyCross(Ray r)
         {
             foreach (var traceable in traceables)
             {
-                if (traceable.Intersects(r, out t))
+                
+                if (traceable.Intersects(r, out double t))
                 {
                     return true;
                 }
-            }
-
-            t = 0;
-            return false;
-        }
-
-        public bool AnyCrossExcept(Ray r, List<ITraceable> traceables, out double t, ITraceable exception)
-        {
-            foreach (var traceable in traceables)
-            {
-                if (traceable == exception)
-                {
-                    continue;
-                }
-                if (traceable.Intersects(r, out t))
-                {
-                    return true;
-                }
-            }
-
-            t = 0;
+            } 
             return false;
         }
     }

@@ -1,5 +1,7 @@
 using System.Drawing;
+using AccelerationStructures;
 using Core;
+using GeometricObjects;
 using GeometricObjects.Basic;
 
 namespace CompGraphics.Materials
@@ -7,12 +9,35 @@ namespace CompGraphics.Materials
 
     public class Lambert : IMaterial
     {
-        public Color MColor { get; set; }
-
-        public Color BRDF(Ray r, Vertex crossPoint, Color inLight)
+        private static float BIAS = 0.01f;
+        private ICrossFinder _crossFinder;
+        
+        public Lambert(ICrossFinder crossFinder)
         {
-            return Coloristycs.Mult(MColor, inLight);
+            _crossFinder = crossFinder;
         }
+        
+        public Color MColor { get; set; }
+        public Color BRDF(Ray r, Vertex crossPoint, Vector norm, Scene scene)
+        {
+            var castPoint = crossPoint + norm.Scale(BIAS);
+            var resLighting = Color.Black;
+            foreach (ILighting l in scene.Lights)
+            {
+                var ray = l.ShadowRay(norm, castPoint);
+                var t = 0.0;
+                if (_crossFinder.AnyCross(ray))
+                {
+                    continue;
+                }
+
+                resLighting = Coloristycs.Add(resLighting, l.OutLight(norm, castPoint));
+            }
+
+            return Coloristycs.Mult(resLighting, MColor);
+        }
+
+
     }
 
 }
