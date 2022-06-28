@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CompGraphics": {
+      "commandName": "Project",
+      "commandLineArgs": "--source=D:\\Polyteco\\Course3\\CompGraphics\\cow.obj --output=D:\\Polyteco\\Course3\\CompGraphics\\rendered.ppm"
+    }
+  }
+}

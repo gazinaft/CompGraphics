@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObjReader", "ObjReader\ObjReader.csproj", "{76089E06-9DA3-4F70-B8E1-EF9EC6C946E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Matrix", "Matrix\Matrix.csproj", "{2B997A3F-1A69-4B74-ADFD-FD82A41EEBC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Matrix", "Matrix\Matrix.csproj", "{2B997A3F-1A69-4B74-ADFD-FD82A41EEBC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccelerationStructures", "AccelerationStructures\AccelerationStructures.csproj", "{4BC56295-B700-47B8-9C53-814BD55D56EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{2B997A3F-1A69-4B74-ADFD-FD82A41EEBC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B997A3F-1A69-4B74-ADFD-FD82A41EEBC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B997A3F-1A69-4B74-ADFD-FD82A41EEBC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BC56295-B700-47B8-9C53-814BD55D56EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BC56295-B700-47B8-9C53-814BD55D56EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BC56295-B700-47B8-9C53-814BD55D56EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BC56295-B700-47B8-9C53-814BD55D56EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
